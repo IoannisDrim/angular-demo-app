@@ -1,0 +1,23 @@
+form {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  background-color: #fff;
+}
+
+h3 {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+button {
+  width: 100%;
+  font-size: 1.2rem;
+}
+
+.login-form {
+  font-size: 1.2rem;
+}
+
+.login-form .form-error-msg {
+  font-size: 1rem;
+}

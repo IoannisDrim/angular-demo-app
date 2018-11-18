@@ -1,0 +1,35 @@
+/* You can add global styles to this file, and also import other style files */
+html, body {
+  margin: 0;
+  padding: 0;
+  min-width: 100%;
+  min-height: 100%;
+  height: 100%;
+  font-size: 10px;
+  position: absolute;
+  background-color: #f4f4f4;
+}
+
+.form-error-msg {
+  margin: 0.5rem;
+  color: red;
+}
+
+.active {
+  color: #000 !important;
+}
+
+.loader {
+  border: 0.5rem solid #f30100;
+  border-top: 0.5rem solid #fff;
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  animation: spin 0.5s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

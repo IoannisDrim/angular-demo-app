@@ -1,0 +1,48 @@
+#navigationBar {
+  background-color: #f30100;
+  padding: 2rem 1rem;
+}
+
+.navbar-brand {
+  margin-right: 2rem;
+}
+
+.navbar-brand img {
+  width: 5rem;
+}
+
+.navbar-brand span {
+  font-size: 2rem;
+  color: #fff;
+}
+
+.navbar-nav li a,
+.navbar-nav li button {
+  font-size: 1.4rem;
+  color: #fff;
+  font-weight: bold;
+}
+
+#navigationBar .navbar-nav {
+  width: 100%;
+}
+
+
+#logoutLink {
+  margin-left: auto;
+}
+
+.navbar-light .navbar-toggler {
+  color: #fff;
+  border-color: #fff;
+}
+
+.navbar-light .navbar-toggler span {
+  color: #fff;
+}
+
+@media only screen and (max-width: 57.6rem) {
+  #logoutLink {
+    margin:  0;
+  }
+}

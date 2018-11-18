@@ -1,0 +1,45 @@
+.modal-header {
+  background-color: #f30100;
+  color: #fff;
+  font-weight: bold;
+}
+
+.modal-header h4 {
+  font-size: 2rem;
+}
+
+.modal-body,
+.modal-footer button {
+  font-size: 1.2rem;
+}
+
+.form-error-msg {
+  font-size: 1rem;
+}
+
+#albumForm {
+  position: relative;
+}
+
+.modal-info-dialog {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(255,255,255,0.8);
+}
+
+.dialog-info-container button {
+  padding: 1rem 2rem;
+  margin-left: 1rem;
+}
+
+.dialog-info-container {
+  text-align: center;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+}

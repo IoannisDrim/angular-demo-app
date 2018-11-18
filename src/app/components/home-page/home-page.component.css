@@ -1,0 +1,22 @@
+.presentation-table {
+	width: 80%;
+}
+
+.main-page-info-display {
+	margin: 2rem 0;
+}
+
+h1,
+h3 {
+	text-align: center;
+}
+
+.album-presentation-container {
+	border: 0.1rem solid #ccc;
+	background-color: #fff;
+}
+
+#addNewAlbumBtn {
+	font-size: 1.2rem;
+	margin: 1rem;
+}

@@ -1,0 +1,9 @@
+<app-navigation-bar></app-navigation-bar>
+<section class='main-page-info-display'>
+	<h1>Home page</h1>
+	<h3>This is a crud page for handling your albums!</h3>
+</section>
+<section class='container album-presentation-container'>
+	<button type="button" id="addNewAlbumBtn" class="btn btn-primary" (click)='createNewAlbum()'><i class="fas fa-plus"></i> Create new album</button>
+	<app-data-presentation-table></app-data-presentation-table>
+</section>
