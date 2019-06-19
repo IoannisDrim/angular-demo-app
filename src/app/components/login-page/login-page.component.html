@@ -4,10 +4,10 @@
 <section class="login-form container">
   <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
     <div class="form-group">
-      <label for="loginUsrname">Username</label>
+      <label for="loginUsername">Username</label>
       <input  type="text" 
               class="form-control" 
-              id="loginUsrname" 
+              id="loginUsername" 
               formControlName="username" 
               placeholder="Enter username" 
               required
@@ -29,7 +29,7 @@
         <span *ngIf="form.password.errors.required"><i class="fas fa-exclamation-circle"></i> Required field</span>
       </div>
     </div>
-    <div class="form-error-msg" *ngIf="wrongCreadentials">
+    <div class="form-error-msg" *ngIf="wrongCredentials">
       <span><i class="fas fa-exclamation-circle"></i> Wrong username or password</span>
     </div>
     <button type="submit" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i> Login <div *ngIf="isLoading" class="loader"></div></button>

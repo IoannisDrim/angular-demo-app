@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import 'rxjs/add/operator/finally';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from '../../services/login.service';
 import { DataShareService } from '../../services/data-share.service';
@@ -14,7 +14,7 @@ export class LoginPageComponent implements OnInit {
 
   loginForm: FormGroup;
   submitted: Boolean = false;
-  wrongCreadentials: Boolean = false;
+  wrongCredentials: Boolean = false;
   isLoading: Boolean = false;
 
   constructor(
@@ -40,14 +40,14 @@ export class LoginPageComponent implements OnInit {
       this.loginService.loginUser(this.loginForm.value)
         .finally(() => this.isLoading = false)
         .subscribe(data => {
-          this.wrongCreadentials = false;
+          this.wrongCredentials = false;
           this.dataShareService.setLoggedInUser(data);
           this.loginService.setIsLoggedIn(true);
           localStorage.setItem('user', JSON.stringify(data));
           localStorage.setItem('JWT', String(data.jwt));
           this.router.navigate(['/homePage']);
-        }, error =>{
-          this.wrongCreadentials = true;
+        }, error => {
+          this.wrongCredentials = true;
         });
     }
   }

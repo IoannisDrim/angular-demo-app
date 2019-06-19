@@ -13,7 +13,7 @@ export class DataShareService {
   loggedInUser = this.loggedInUserSource.asObservable();
   album = this.albumSource.asObservable();
 
-  constructor() { 
+  constructor() {
     /*If user is already logged in*/
     if ( localStorage.getItem('user') ) {
       this.setLoggedInUser(JSON.parse(localStorage.getItem('user')));

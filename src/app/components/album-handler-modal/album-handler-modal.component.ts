@@ -1,6 +1,6 @@
 import { Component, OnInit, Input  } from '@angular/core';
-import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Album } from '../../models/album-model';
 import { AppUser } from '../../models/app-user-model';
 import { AlbumService } from '../../services/album.service';
@@ -11,7 +11,7 @@ import { DataShareService } from '../../services/data-share.service';
   templateUrl: './album-handler-modal.component.html',
   styleUrls: ['./album-handler-modal.component.css']
 })
-export class AlbumHandlerModalComponent implements OnInit{
+export class AlbumHandlerModalComponent implements OnInit {
 
   @Input() album: Album;
   @Input() updateMode: Boolean;
@@ -51,7 +51,7 @@ export class AlbumHandlerModalComponent implements OnInit{
     this.dataShareService.loggedInUser
       .subscribe(data => {
         this.user = data;
-      })
+      });
   }
 
   saveChanges() {
@@ -63,15 +63,15 @@ export class AlbumHandlerModalComponent implements OnInit{
         .finally(() => {
           this.isLoading = false;
           this.actionCompleted = true;
-          setTimeout(()=>{
+          setTimeout(() => {
             this.close();
-          },2000)
+          }, 2000);
         })
         .subscribe(data => {
           this.actionSuccessfullyCompleted = true;
-        },error => {
+        }, error => {
           this.actionSuccessfullyCompleted = false;
-        })
+        });
     }
   }
 
@@ -85,24 +85,23 @@ export class AlbumHandlerModalComponent implements OnInit{
         .finally(() => {
           this.isLoading = false;
           this.actionCompleted = true;
-          setTimeout(()=>{
+          setTimeout(() => {
             this.close();
-          },2000)
+          }, 2000);
         })
         .subscribe(data => {
           this.actionSuccessfullyCompleted = true;
           this.dataShareService.setAlbum(data);
-        },error => {
+        }, error => {
           this.actionSuccessfullyCompleted = false;
-        })
+        });
     }
   }
 
   checkForChanges() {
     if ( !this.actionSuccessfullyCompleted && this.albumForm.dirty && this.albumForm.value.title ) {
       this.askConfirmation = true;
-    }
-    else{
+    } else {
       this.close();
     }
   }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbActiveModal, NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { AlbumService } from '../../services/album.service';
 import { Album } from '../../models/album-model';
 import { AlbumHandlerModalComponent } from '../album-handler-modal/album-handler-modal.component';
@@ -30,7 +30,7 @@ export class DataPresentationTableComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    let user = JSON.parse(localStorage.getItem('user'));
+    const user = JSON.parse(localStorage.getItem('user'));
     this.fetchAlbums(user);
     this.modalOption.backdrop = 'static';
     this.modalOption.keyboard = false;
@@ -42,11 +42,13 @@ export class DataPresentationTableComponent implements OnInit {
       .subscribe(data => {
         this.allAlbums = data;
         this.loadPage();
-      })
+      });
   }
 
   loadPage() {
-    this.albums = this.allAlbums.slice((this.pagination.page-1)*this.pagination.pageSize, this.pagination.page*this.pagination.pageSize );
+    this.albums = this.allAlbums.slice(
+        (this.pagination.page - 1) * this.pagination.pageSize, this.pagination.page * this.pagination.pageSize
+      );
   }
 
   deleteAlbum(albumID) {
@@ -57,12 +59,12 @@ export class DataPresentationTableComponent implements OnInit {
         this.isLoading = false;
       })
       .subscribe(data => {
-        let tmpAlbums = this.allAlbums.filter(album=>{
-          return album.id !== albumID
-        })
+        const tmpAlbums = this.allAlbums.filter(album => {
+          return album.id !== albumID;
+        });
         this.allAlbums = tmpAlbums;
         this.loadPage();
-      })
+      });
   }
 
   viewAndUpdate(album) {
@@ -76,7 +78,7 @@ export class DataPresentationTableComponent implements OnInit {
       .subscribe(data => {
         this.allAlbums.unshift(data);
         this.loadPage();
-      })
+      });
   }
 
 }

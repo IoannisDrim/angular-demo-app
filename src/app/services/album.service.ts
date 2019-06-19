@@ -9,7 +9,7 @@ import { Album } from '../models/album-model';
 export class AlbumService {
 
   url: string;
-  endpoints: any
+  endpoints: any;
   headers: any = {
     headers : {
       'jwt' : localStorage.getItem('JWT')
@@ -19,14 +19,13 @@ export class AlbumService {
   constructor(
     private http: HttpClient
   ) {
-    this.url='https://jsonplaceholder.typicode.com';
+    this.url = 'https://jsonplaceholder.typicode.com';
     this.endpoints = {
       albums: '/albums'
-    }
+    };
   }
 
   getAlbums(userId): Observable<any> {
-    console.log(this.headers);
     return this.http.get(this.url + this.endpoints.albums + '?userId=' + userId, this.headers);
   }
 

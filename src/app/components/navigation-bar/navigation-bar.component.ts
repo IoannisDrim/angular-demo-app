@@ -9,21 +9,21 @@ import { LoginService } from '../../services/login.service';
 })
 export class NavigationBarComponent implements OnInit {
 
-  navbarOpen:Boolean = false;
+  navbarOpen: Boolean = false;
 
   constructor(
-  	private loginService: LoginService,
-  	private router: Router
+    private loginService: LoginService,
+    private router: Router
   ) { }
 
   ngOnInit() {
   }
 
   logout() {
-  	this.router.navigate(['/loginPage']);
-  	localStorage.removeItem('user');
-  	localStorage.removeItem('JWT');
-  	this.loginService.setIsLoggedIn(false);
+    this.router.navigate(['/loginPage']);
+    localStorage.removeItem('user');
+    localStorage.removeItem('JWT');
+    this.loginService.setIsLoggedIn(false);
   }
 
   toggleNavbar() {
