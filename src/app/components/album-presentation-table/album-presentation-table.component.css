@@ -1,0 +1,19 @@
+tbody tr td:last-child {
+  text-align: center;
+}
+
+tbody tr td:last-child button {
+  margin: 0 1rem;
+}
+
+tbody tr td:last-child .loader {
+	position: absolute;
+}
+
+tbody th {
+  font-size: 1.5rem;
+}
+
+tbody td {
+  font-size: 1.2rem;
+}

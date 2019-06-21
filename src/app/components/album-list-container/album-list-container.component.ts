@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
-import { AlbumService } from '../../services/album.service';
-import { Album } from '../../models/album-model';
-import { AlbumHandlerModalComponent } from '../album-handler-modal/album-handler-modal.component';
-import { DataShareService } from '../../services/data-share.service';
+import { AlbumService } from '@services/album.service';
+import { DataShareService } from '@services/data-share.service';
+import { AlbumHandlerModalComponent } from '@components/album-handler-modal/album-handler-modal.component';
+import { Album } from '@models/album-model';
 
 @Component({
-  selector: 'app-data-presentation-table',
-  templateUrl: './data-presentation-table.component.html',
-  styleUrls: ['./data-presentation-table.component.css']
+  selector: 'app-album-list-container',
+  templateUrl: './album-list-container.component.html',
+  styleUrls: ['./album-list-container.component.css']
 })
-export class DataPresentationTableComponent implements OnInit {
+export class AlbumListContainerComponent implements OnInit {
 
   allAlbums: Album[] = [];
   albums: Album[] = [];
@@ -21,7 +21,6 @@ export class DataPresentationTableComponent implements OnInit {
   };
   modalOption: NgbModalOptions = {};
   isLoading: Boolean = false;
-  selectedAlbumId: number = null;
 
   constructor(
     private albumService: AlbumService,
@@ -45,22 +44,36 @@ export class DataPresentationTableComponent implements OnInit {
       });
   }
 
-  loadPage() {
-    this.albums = this.allAlbums.slice(
-        (this.pagination.page - 1) * this.pagination.pageSize, this.pagination.page * this.pagination.pageSize
-      );
+  onCerateAlbumCallback() {
+    this.dataShareService.album
+      .subscribe(data => {
+        this.allAlbums.unshift(data);
+        this.loadPage();
+      });
   }
 
-  deleteAlbum(albumID) {
-    this.selectedAlbumId = albumID;
+  loadPage() {
+    this.albums = this.allAlbums.slice(
+      (this.pagination.page - 1) * this.pagination.pageSize, this.pagination.page * this.pagination.pageSize
+    );
+  }
+
+  createNewAlbum() {
+    const modalRef = this.modalService.open(AlbumHandlerModalComponent, this.modalOption);
+    const album: Album = {} as Album;
+    modalRef.componentInstance.album = album;
+    modalRef.componentInstance.updateMode = false;
+  }
+
+  deleteAlbum(albumId) {
     this.isLoading = true;
-    this.albumService.deleteAlbum(albumID)
+    this.albumService.deleteAlbum(albumId)
       .finally(() => {
         this.isLoading = false;
       })
       .subscribe(data => {
         const tmpAlbums = this.allAlbums.filter(album => {
-          return album.id !== albumID;
+          return album.id !== albumId;
         });
         this.allAlbums = tmpAlbums;
         this.loadPage();
@@ -72,13 +85,4 @@ export class DataPresentationTableComponent implements OnInit {
     modalRef.componentInstance.album = album;
     modalRef.componentInstance.updateMode = true;
   }
-
-  onCerateAlbumCallback() {
-    this.dataShareService.album
-      .subscribe(data => {
-        this.allAlbums.unshift(data);
-        this.loadPage();
-      });
-  }
-
 }

@@ -1,0 +1,16 @@
+#addNewAlbumBtn {
+	font-size: 1.2rem;
+	margin: 1rem;
+}
+
+table th {
+  font-size: 1.5rem;
+}
+
+table td {
+  font-size: 1.2rem;
+}
+
+app-album-presentation-table {
+  display: contents;
+}

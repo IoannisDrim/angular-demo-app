@@ -9,31 +9,15 @@
   <div class="modal-body">
     <div class="form-group" *ngIf="updateMode">
       <label for="id">Album id</label>
-      <input  type="text" 
-              class="form-control" 
-              id="id" 
-              formControlName="id"
-              required
-      >
+      <input type="text" class="form-control" id="id" formControlName="id" required>
     </div>
     <div class="form-group" *ngIf="updateMode">
       <label for="userId">Album user id</label>
-      <input  type="text" 
-              class="form-control" 
-              id="userId" 
-              formControlName="userId"
-              required
-      >
+      <input type="text" class="form-control" id="userId" formControlName="userId" required>
     </div>
     <div class="form-group">
       <label for="title">Album title</label>
-      <input  type="text" 
-              class="form-control" 
-              id="title" 
-              formControlName="title" 
-              placeholder="Enter title" 
-              required
-      >
+      <input type="text" class="form-control" id="title" formControlName="title" placeholder="Enter title" required>
       <div class="form-error-msg" *ngIf="submitted && form.title.errors">
         <span *ngIf="form.title.errors.required"><i class="fas fa-exclamation-circle"></i> Required field</span>
       </div>
@@ -41,8 +25,10 @@
   </div>
   <div class="modal-footer">
     <div *ngIf="isLoading" class="loader"></div>
-    <button type="submit" class="btn btn-primary" [disabled]="isLoading" (click)='saveChanges()' *ngIf="updateMode">Save</button>
-    <button type="submit" class="btn btn-primary" [disabled]="isLoading" (click)='createAlbum()' *ngIf="!updateMode">Create</button>
+    <button type="submit" class="btn btn-primary" [disabled]="isLoading" (click)='saveChanges()'
+      *ngIf="updateMode">Save</button>
+    <button type="submit" class="btn btn-primary" [disabled]="isLoading" (click)='createAlbum()'
+      *ngIf="!updateMode">Create</button>
     <button type="button" class="btn btn-secondary" (click)="checkForChanges()">Close</button>
   </div>
   <div class="modal-info-dialog" *ngIf="askConfirmation">
@@ -55,12 +41,16 @@
   <div class="modal-info-dialog" *ngIf="actionCompleted">
     <div class="dialog-info-container">
       <div *ngIf="!updateMode">
-        <h4 class="text-success" *ngIf="actionSuccessfullyCompleted"><i class="fas fa-check"></i> Album succesfully ceated!</h4>
-        <h4 class="text-danger" *ngIf="!actionSuccessfullyCompleted"><i class="fas fa-times"></i> Album creation failed.</h4>
+        <h4 class="text-success" *ngIf="actionSuccessfullyCompleted"><i class="fas fa-check"></i> Album successfully
+          created!</h4>
+        <h4 class="text-danger" *ngIf="!actionSuccessfullyCompleted"><i class="fas fa-times"></i> Album creation failed.
+        </h4>
       </div>
       <div *ngIf="updateMode">
-        <h4 class="text-success" *ngIf="actionSuccessfullyCompleted"><i class="fas fa-check"></i> Album succesfully updated!</h4>
-        <h4 class="text-danger" *ngIf="!actionSuccessfullyCompleted"><i class="fas fa-times"></i> Album update failed.</h4>
+        <h4 class="text-success" *ngIf="actionSuccessfullyCompleted"><i class="fas fa-check"></i> Album successfully
+          updated!</h4>
+        <h4 class="text-danger" *ngIf="!actionSuccessfullyCompleted"><i class="fas fa-times"></i> Album update failed.
+        </h4>
       </div>
     </div>
   </div>

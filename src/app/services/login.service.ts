@@ -13,7 +13,7 @@ export class LoginService {
   constructor(
     private http: HttpClient
   ) {
-    if ( localStorage.getItem('JWT') ) {
+    if (localStorage.getItem('JWT')) {
       this.isLoggedIn = localStorage.getItem('JWT') ? true : false;
     }
   }

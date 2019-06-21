@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginService } from '../../services/login.service';
+import { LoginService } from '@services/login.service';
 
 @Component({
   selector: 'app-navigation-bar',
@@ -20,7 +20,7 @@ export class NavigationBarComponent implements OnInit {
   }
 
   logout() {
-    this.router.navigate(['/loginPage']);
+    this.router.navigate(['/login-page']);
     localStorage.removeItem('user');
     localStorage.removeItem('JWT');
     this.loginService.setIsLoggedIn(false);

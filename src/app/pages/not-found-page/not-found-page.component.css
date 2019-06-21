@@ -1,0 +1,68 @@
+.details-info {
+  padding: 1rem;
+  width: 75%;
+  float: left;
+  padding-left: 1rem;
+  box-sizing: border-box;
+  overflow-wrap: break-word;
+  word-break: break-all;
+  white-space: normal;
+}
+
+h1,
+h3 {
+  text-align: center;
+}
+
+.contact-me-page-info-display {
+  margin: 2rem 0;
+}
+
+div.info-pack {
+  direction: block;
+}
+
+label {
+font-weight: bold;
+}
+
+a {
+  text-decoration: none;
+  color: #008ae6
+}
+
+.jumbotron {
+  display: flex;
+}
+
+.header-details-contact {
+  display: block;
+  margin: 0.5rem auto;
+  font-size: 1.5rem;
+}
+
+.fas,
+.fab,
+.far {
+  vertical-align: middle !important;
+  font-size: 2.2rem;
+  color: #66a3ff;
+  margin-right: 0.6rem;
+  margin-left: 0.3rem;
+}
+
+.fa-phone-square {
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+.fa-envelope {
+  font-size: 2rem;
+}
+
+.fa-map-marker-alt {
+  margin-right: 1rem;
+}

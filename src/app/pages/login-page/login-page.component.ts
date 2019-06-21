@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import 'rxjs/add/operator/finally';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoginService } from '../../services/login.service';
-import { DataShareService } from '../../services/data-share.service';
+import { LoginService } from '@services/login.service';
+import { DataShareService } from '@services/data-share.service';
 
 @Component({
   selector: 'app-login-page',
@@ -26,8 +26,8 @@ export class LoginPageComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-        username: ['', Validators.required],
-        password: ['', Validators.required]
+      username: ['', Validators.required],
+      password: ['', Validators.required]
     });
   }
 
@@ -35,7 +35,7 @@ export class LoginPageComponent implements OnInit {
 
   onLoginSubmit() {
     this.submitted = true;
-    if ( this.loginForm.valid ) {
+    if (this.loginForm.valid) {
       this.isLoading = true;
       this.loginService.loginUser(this.loginForm.value)
         .finally(() => this.isLoading = false)
@@ -45,7 +45,7 @@ export class LoginPageComponent implements OnInit {
           this.loginService.setIsLoggedIn(true);
           localStorage.setItem('user', JSON.stringify(data));
           localStorage.setItem('JWT', String(data.jwt));
-          this.router.navigate(['/homePage']);
+          this.router.navigate(['/home-page']);
         }, error => {
           this.wrongCredentials = true;
         });

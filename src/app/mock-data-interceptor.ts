@@ -24,18 +24,18 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         });
 
         if (filteredUsers.length) {
-            // if login details are valid return 200 OK with user details and fake jwt token
-            const user = filteredUsers[0];
-            const body = {
-              id: user.id,
-              username: user.username,
-              jwt: user.jwt
-            };
+          // if login details are valid return 200 OK with user details and fake jwt token
+          const user = filteredUsers[0];
+          const body = {
+            id: user.id,
+            username: user.username,
+            jwt: user.jwt
+          };
 
-            return of(new HttpResponse({ status: 200, body: body }));
+          return of(new HttpResponse({ status: 200, body: body }));
         } else {
-            // else return 400 bad request
-            return throwError({ message: 'Username or password is incorrect'});
+          // else return 400 bad request
+          return throwError({ message: 'Username or password is incorrect' });
         }
       }
 
@@ -43,14 +43,14 @@ export class FakeBackendInterceptor implements HttpInterceptor {
       return next.handle(request);
 
     }))
-    .pipe(materialize())
-    .pipe(delay(500))
-    .pipe(dematerialize());
+      .pipe(materialize())
+      .pipe(delay(500))
+      .pipe(dematerialize());
   }
 }
 
 export let fakeBackendProvider = {
-    provide: HTTP_INTERCEPTORS,
-    useClass: FakeBackendInterceptor,
-    multi: true
+  provide: HTTP_INTERCEPTORS,
+  useClass: FakeBackendInterceptor,
+  multi: true
 };

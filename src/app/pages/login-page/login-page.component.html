@@ -5,26 +5,16 @@
   <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
     <div class="form-group">
       <label for="loginUsername">Username</label>
-      <input  type="text" 
-              class="form-control" 
-              id="loginUsername" 
-              formControlName="username" 
-              placeholder="Enter username" 
-              required
-      >
+      <input type="text" class="form-control" id="loginUsername" formControlName="username" placeholder="Enter username"
+        required>
       <div class="form-error-msg" *ngIf="submitted && form.username.errors">
         <span *ngIf="form.username.errors.required"><i class="fas fa-exclamation-circle"></i> Required field</span>
       </div>
     </div>
     <div class="form-group">
       <label for="loginPassword">Password</label>
-      <input  type="password" 
-              class="form-control" 
-              id="loginPassword" 
-              formControlName="password" 
-              placeholder="Enter password" 
-              required
-      >
+      <input type="password" class="form-control" id="loginPassword" formControlName="password"
+        placeholder="Enter password" required>
       <div class="form-error-msg" *ngIf="submitted && form.password.errors">
         <span *ngIf="form.password.errors.required"><i class="fas fa-exclamation-circle"></i> Required field</span>
       </div>
@@ -32,6 +22,7 @@
     <div class="form-error-msg" *ngIf="wrongCredentials">
       <span><i class="fas fa-exclamation-circle"></i> Wrong username or password</span>
     </div>
-    <button type="submit" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i> Login <div *ngIf="isLoading" class="loader"></div></button>
+    <button type="submit" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i> Login <div *ngIf="isLoading"
+        class="loader"></div></button>
   </form>
 </section>

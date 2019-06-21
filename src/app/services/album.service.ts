@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Album } from '../models/album-model';
+import { Album } from '@models/album-model';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +11,8 @@ export class AlbumService {
   url: string;
   endpoints: any;
   headers: any = {
-    headers : {
-      'jwt' : localStorage.getItem('JWT')
+    headers: {
+      'jwt': localStorage.getItem('JWT')
     }
   };
 

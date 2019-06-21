@@ -1,0 +1,25 @@
+<button type="button" id="addNewAlbumBtn" class="btn btn-primary" (click)='createNewAlbum()'>
+  <i class="fas fa-plus"></i> Create new album
+</button>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Title</th>
+      <th></th>
+    </tr>
+  </thead>
+  <app-album-presentation-table [albums]='albums' [isLoading]='isLoading' (deleteAlbum)='deleteAlbum($event)'
+    (viewAndUpdateAlbum)='viewAndUpdate($event)'>
+  </app-album-presentation-table>
+  <tfoot>
+    <tr>
+      <td colspan="3">
+        <ngb-pagination class="d-flex justify-content-center" [collectionSize]="allAlbums.length"
+          [pageSize]="pagination.pageSize" [(page)]="pagination.page" [maxSize]="pagination.maxSize" [rotate]="true"
+          (pageChange)="loadPage($event)">
+        </ngb-pagination>
+      </td>
+    </tr>
+  </tfoot>
+</table>

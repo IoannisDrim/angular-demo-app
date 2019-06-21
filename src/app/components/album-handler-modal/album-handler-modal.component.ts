@@ -1,10 +1,10 @@
-import { Component, OnInit, Input  } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { Album } from '../../models/album-model';
-import { AppUser } from '../../models/app-user-model';
-import { AlbumService } from '../../services/album.service';
-import { DataShareService } from '../../services/data-share.service';
+import { Album } from '@models/album-model';
+import { AppUser } from '@models/app-user-model';
+import { AlbumService } from '@services/album.service';
+import { DataShareService } from '@services/data-share.service';
 
 @Component({
   selector: 'app-album-handler-modal',
@@ -41,9 +41,9 @@ export class AlbumHandlerModalComponent implements OnInit {
 
   initializeForm() {
     this.albumForm = this.formBuilder.group({
-        id: [{value: this.album.id, disabled: this.updateMode}],
-        userId: [{value: this.album.userId, disabled: this.updateMode}, Validators.required],
-        title: [this.album.title, Validators.required]
+      id: [{ value: this.album.id, disabled: this.updateMode }],
+      userId: [{ value: this.album.userId, disabled: this.updateMode }, Validators.required],
+      title: [this.album.title, Validators.required]
     });
   }
 
@@ -56,7 +56,7 @@ export class AlbumHandlerModalComponent implements OnInit {
 
   saveChanges() {
     this.submitted = true;
-    if ( this.albumForm.valid ) {
+    if (this.albumForm.valid) {
       this.isLoading = true;
       this.album.title = this.albumForm.value.title;
       this.albumService.updateAlbum(this.album)
@@ -79,7 +79,7 @@ export class AlbumHandlerModalComponent implements OnInit {
     this.submitted = true;
     this.albumForm.controls['userId'].setValue(this.user.id);
     this.albumForm.controls['id'].setValue(null);
-    if ( this.albumForm.valid ) {
+    if (this.albumForm.valid) {
       this.isLoading = true;
       this.albumService.createAlbum(this.albumForm.value)
         .finally(() => {
@@ -99,7 +99,7 @@ export class AlbumHandlerModalComponent implements OnInit {
   }
 
   checkForChanges() {
-    if ( !this.actionSuccessfullyCompleted && this.albumForm.dirty && this.albumForm.value.title ) {
+    if (!this.actionSuccessfullyCompleted && this.albumForm.dirty && this.albumForm.value.title) {
       this.askConfirmation = true;
     } else {
       this.close();
