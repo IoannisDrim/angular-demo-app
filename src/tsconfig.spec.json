@@ -16,5 +16,25 @@
   "include": [
     "**/*.spec.ts",
     "**/*.d.ts"
-  ]
+  ],
+  "paths": {
+    "@app/*": [
+      "app/"
+    ],
+    "@environment/*": [
+      "environments/*"
+    ],
+    "@services/*": [
+      "app/services/*"
+    ],
+    "@pages/*": [
+      "app/pages/*"
+    ],
+    "@models/*": [
+      "app/models/*"
+    ],
+    "@components/*": [
+      "app/components/*"
+    ]
+  }
 }
