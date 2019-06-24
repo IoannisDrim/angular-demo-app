@@ -19,14 +19,14 @@ export class FakeBackendInterceptor implements HttpInterceptor {
     return of(null).pipe(mergeMap(() => {
       // authenticate
       if (request.url.endsWith('api/login') && request.method === 'PUT') {
-        const filteredUsers = users.filter(user => {
+        const filteredUsers: any[] = users.filter((user: any) => {
           return user.username === request.body.username && user.password === request.body.password;
         });
 
         if (filteredUsers.length) {
           // if login details are valid return 200 OK with user details and fake jwt token
-          const user = filteredUsers[0];
-          const body = {
+          const user: any = filteredUsers[0];
+          const body: any = {
             id: user.id,
             username: user.username,
             jwt: user.jwt
@@ -49,7 +49,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
   }
 }
 
-export let fakeBackendProvider = {
+export const fakeBackendProvider: any = {
   provide: HTTP_INTERCEPTORS,
   useClass: FakeBackendInterceptor,
   multi: true

@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalOptions, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { AlbumService } from '@services/album.service';
 import { DataShareService } from '@services/data-share.service';
 import { AlbumHandlerModalComponent } from '@components/album-handler-modal/album-handler-modal.component';
 import { Album } from '@models/album-model';
+import { Pagination } from '@models/pagination-model';
+import { AppUser } from '@models/app-user-model';
 
 @Component({
   selector: 'app-album-list-container',
@@ -14,13 +16,16 @@ export class AlbumListContainerComponent implements OnInit {
 
   allAlbums: Album[] = [];
   albums: Album[] = [];
-  pagination: any = {
+  pagination: Pagination = {
     page: 1,
     pageSize: 5,
     maxSize: 5
   };
-  modalOption: NgbModalOptions = {};
-  isLoading: Boolean = false;
+  modalOption: NgbModalOptions = {
+    backdrop: 'static',
+    keyboard: false
+  };
+  isLoading: boolean = false;
 
   constructor(
     private albumService: AlbumService,
@@ -28,51 +33,49 @@ export class AlbumListContainerComponent implements OnInit {
     private dataShareService: DataShareService
   ) { }
 
-  ngOnInit() {
-    const user = JSON.parse(localStorage.getItem('user'));
+  ngOnInit(): void {
+    const user: AppUser = JSON.parse(localStorage.getItem('user'));
     this.fetchAlbums(user);
-    this.modalOption.backdrop = 'static';
-    this.modalOption.keyboard = false;
     this.onCerateAlbumCallback();
   }
 
-  fetchAlbums(user) {
+  fetchAlbums(user: AppUser): void {
     this.albumService.getAlbums(user.id)
-      .subscribe(data => {
+      .subscribe((data: any) => {
         this.allAlbums = data;
         this.loadPage();
       });
   }
 
-  onCerateAlbumCallback() {
+  onCerateAlbumCallback(): void {
     this.dataShareService.album
-      .subscribe(data => {
+      .subscribe((data: any) => {
         this.allAlbums.unshift(data);
         this.loadPage();
       });
   }
 
-  loadPage() {
+  loadPage(): void {
     this.albums = this.allAlbums.slice(
       (this.pagination.page - 1) * this.pagination.pageSize, this.pagination.page * this.pagination.pageSize
     );
   }
 
-  createNewAlbum() {
-    const modalRef = this.modalService.open(AlbumHandlerModalComponent, this.modalOption);
+  createNewAlbum(): void {
+    const modalRef: NgbModalRef = this.modalService.open(AlbumHandlerModalComponent, this.modalOption);
     const album: Album = {} as Album;
     modalRef.componentInstance.album = album;
     modalRef.componentInstance.updateMode = false;
   }
 
-  deleteAlbum(albumId) {
+  deleteAlbum(albumId: number): void {
     this.isLoading = true;
     this.albumService.deleteAlbum(albumId)
       .finally(() => {
         this.isLoading = false;
       })
-      .subscribe(data => {
-        const tmpAlbums = this.allAlbums.filter(album => {
+      .subscribe((data: any) => {
+        const tmpAlbums: Album[] = this.allAlbums.filter((album: Album) => {
           return album.id !== albumId;
         });
         this.allAlbums = tmpAlbums;
@@ -80,8 +83,8 @@ export class AlbumListContainerComponent implements OnInit {
       });
   }
 
-  viewAndUpdate(album) {
-    const modalRef = this.modalService.open(AlbumHandlerModalComponent, this.modalOption);
+  viewAndUpdate(album: Album): void {
+    const modalRef: NgbModalRef = this.modalService.open(AlbumHandlerModalComponent, this.modalOption);
     modalRef.componentInstance.album = album;
     modalRef.componentInstance.updateMode = true;
   }

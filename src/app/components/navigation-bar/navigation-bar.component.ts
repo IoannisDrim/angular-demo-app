@@ -16,17 +16,17 @@ export class NavigationBarComponent implements OnInit {
     private router: Router
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
-  logout() {
+  logout(): void {
     this.router.navigate(['/login-page']);
     localStorage.removeItem('user');
     localStorage.removeItem('JWT');
     this.loginService.setIsLoggedIn(false);
   }
 
-  toggleNavbar() {
+  toggleNavbar(): void {
     this.navbarOpen = !this.navbarOpen;
   }
 

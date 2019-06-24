@@ -14,24 +14,24 @@ export class AlbumPresentationTableComponent implements OnInit {
 
   // tslint:disable-next-line: no-output-rename
   @Output('deleteAlbum')
-  deleteAlbumEmitter = new EventEmitter<Album>();
+  private deleteAlbumEmitter = new EventEmitter<number>();
 
   // tslint:disable-next-line: no-output-rename
   @Output('viewAndUpdateAlbum')
   viewAndUpdateAlbumEmitter = new EventEmitter<Album>();
 
-  selectedAlbumId: string;
+  private selectedAlbumId: number;
 
   constructor() { }
 
-  ngOnInit() { }
+  ngOnInit(): void { }
 
-  deleteAlbum(albumId) {
+  deleteAlbum(albumId: number): void {
     this.selectedAlbumId = albumId;
     this.deleteAlbumEmitter.emit(albumId);
   }
 
-  viewAndUpdate(album) {
+  viewAndUpdate(album: Album): void {
     this.viewAndUpdateAlbumEmitter.emit(album);
   }
 

@@ -24,29 +24,29 @@ export class LoginPageComponent implements OnInit {
     private dataShareService: DataShareService
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
     });
   }
 
-  get form() { return this.loginForm.controls; }
+  get form(): any { return this.loginForm.controls; }
 
-  onLoginSubmit() {
+  onLoginSubmit(): void {
     this.submitted = true;
     if (this.loginForm.valid) {
       this.isLoading = true;
       this.loginService.loginUser(this.loginForm.value)
         .finally(() => this.isLoading = false)
-        .subscribe(data => {
+        .subscribe((data: any) => {
           this.wrongCredentials = false;
           this.dataShareService.setLoggedInUser(data);
           this.loginService.setIsLoggedIn(true);
           localStorage.setItem('user', JSON.stringify(data));
           localStorage.setItem('JWT', String(data.jwt));
           this.router.navigate(['/home-page']);
-        }, error => {
+        }, (/*error*/) => {
           this.wrongCredentials = true;
         });
     }

@@ -12,8 +12,8 @@ export class DataShareService {
   private newAlbum: Album;
   private loggedInUserSource = new BehaviorSubject<AppUser>(this.appUser);
   private albumSource = new BehaviorSubject<Album>(this.newAlbum);
-  loggedInUser = this.loggedInUserSource.asObservable();
-  album = this.albumSource.asObservable();
+  private loggedInUser = this.loggedInUserSource.asObservable();
+  private album = this.albumSource.asObservable();
 
   constructor() {
     /*If user is already logged in*/
@@ -23,11 +23,11 @@ export class DataShareService {
 
   }
 
-  setLoggedInUser(user: AppUser) {
+  setLoggedInUser(user: AppUser): void {
     this.loggedInUserSource.next(user);
   }
 
-  setAlbum(album: Album) {
+  setAlbum(album: Album): void {
     this.albumSource.next(album);
   }
 

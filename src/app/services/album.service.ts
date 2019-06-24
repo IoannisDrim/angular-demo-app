@@ -25,19 +25,19 @@ export class AlbumService {
     };
   }
 
-  getAlbums(userId): Observable<any> {
+  getAlbums(userId: number): Observable<any> {
     return this.http.get(this.url + this.endpoints.albums + '?userId=' + userId, this.headers);
   }
 
-  deleteAlbum(albumId): Observable<any> {
+  deleteAlbum(albumId: number): Observable<any> {
     return this.http.delete(this.url + this.endpoints.albums + '/' + albumId, this.headers);
   }
 
-  updateAlbum(album): Observable<any> {
+  updateAlbum(album: Album): Observable<any> {
     return this.http.put<Album>(this.url + this.endpoints.albums + '/' + album.id, album, this.headers);
   }
 
-  createAlbum(album): Observable<any> {
+  createAlbum(album: Album): Observable<any> {
     return this.http.post<Album>(this.url + this.endpoints.albums, album, this.headers);
   }
 

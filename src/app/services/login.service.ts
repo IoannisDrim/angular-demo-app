@@ -18,11 +18,11 @@ export class LoginService {
     }
   }
 
-  loginUser(formData): Observable<any> {
+  loginUser(formData: any): Observable<any> {
     return this.http.put<any>(this.url, formData);
   }
 
-  setIsLoggedIn(value: Boolean) {
+  setIsLoggedIn(value: Boolean): void {
     this.isLoggedIn = value;
   }
 

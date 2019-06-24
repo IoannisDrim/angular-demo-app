@@ -32,14 +32,14 @@ export class AlbumHandlerModalComponent implements OnInit {
     private dataShareService: DataShareService
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.initializeForm();
     this.getLoggedInUser();
   }
 
-  get form() { return this.albumForm.controls; }
+  get form(): any { return this.albumForm.controls; }
 
-  initializeForm() {
+  initializeForm(): void {
     this.albumForm = this.formBuilder.group({
       id: [{ value: this.album.id, disabled: this.updateMode }],
       userId: [{ value: this.album.userId, disabled: this.updateMode }, Validators.required],
@@ -47,14 +47,14 @@ export class AlbumHandlerModalComponent implements OnInit {
     });
   }
 
-  getLoggedInUser() {
+  getLoggedInUser(): void {
     this.dataShareService.loggedInUser
-      .subscribe(data => {
+      .subscribe((data: any) => {
         this.user = data;
       });
   }
 
-  saveChanges() {
+  saveChanges(): void {
     this.submitted = true;
     if (this.albumForm.valid) {
       this.isLoading = true;
@@ -67,15 +67,15 @@ export class AlbumHandlerModalComponent implements OnInit {
             this.close();
           }, 2000);
         })
-        .subscribe(data => {
+        .subscribe((/*data*/) => {
           this.actionSuccessfullyCompleted = true;
-        }, error => {
+        }, (/*error*/) => {
           this.actionSuccessfullyCompleted = false;
         });
     }
   }
 
-  createAlbum() {
+  createAlbum(): void {
     this.submitted = true;
     this.albumForm.controls['userId'].setValue(this.user.id);
     this.albumForm.controls['id'].setValue(null);
@@ -89,16 +89,16 @@ export class AlbumHandlerModalComponent implements OnInit {
             this.close();
           }, 2000);
         })
-        .subscribe(data => {
+        .subscribe((data: any) => {
           this.actionSuccessfullyCompleted = true;
           this.dataShareService.setAlbum(data);
-        }, error => {
+        }, (/*error*/) => {
           this.actionSuccessfullyCompleted = false;
         });
     }
   }
 
-  checkForChanges() {
+  checkForChanges(): void {
     if (!this.actionSuccessfullyCompleted && this.albumForm.dirty && this.albumForm.value.title) {
       this.askConfirmation = true;
     } else {
@@ -106,11 +106,11 @@ export class AlbumHandlerModalComponent implements OnInit {
     }
   }
 
-  close() {
+  close(): void {
     this.activeModal.close('Close click');
   }
 
-  closeConfirmationDialog() {
+  closeConfirmationDialog(): void {
     this.askConfirmation = false;
   }
 
