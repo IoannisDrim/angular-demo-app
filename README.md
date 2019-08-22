@@ -5,6 +5,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ### Getting Started
  
 These instructions will guide you in how to install and run application
+Project is still in progress.
 
 ### Prerequisites
 Thinks need to be installed on your PC
